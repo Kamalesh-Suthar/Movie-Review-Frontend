@@ -1,0 +1,26 @@
+.BtnContainer {
+    outline: none;
+    border: 1px solid #fff;
+    width: 100%;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.25),
+    8px 8px 12px rgba(255, 255, 255, 0.3);
+    font-size: 1rem;
+    transition: all 0.3s ease 0s;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.BtnContainer:hover {
+    box-shadow: inset 3px 3px 3px rgba(255, 255, 255, 0.5),
+    inset 1px 1px 4px rgba(0, 0, 0, 0.35);
+    transition: all 1s ease 0s;
+}
+
+.InActive {
+    display: none;
+}

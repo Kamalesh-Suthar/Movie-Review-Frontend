@@ -1,0 +1,47 @@
+.MainContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.4);
+    padding: 12px 24px;
+    box-sizing: border-box;
+    margin: 4px 0;
+}
+
+.LeftSection {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.ReviewTitle {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ReviewDescription {
+    font-size: 12px;
+}
+
+.RightSection {
+    text-align: right;
+    width: 10%;
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.CreatedOn {
+    font-size: 12px;
+}
+
+.Reviewer {
+    font-size: 14px;
+    font-weight: 500;
+}

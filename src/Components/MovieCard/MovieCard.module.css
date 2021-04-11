@@ -1,0 +1,72 @@
+.MainContainer {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #fff;
+    border-radius: 6px 6px 0 0 ;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.ImageContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.Images {
+    width: 100%;
+    height: 100%;
+}
+
+.DetailsContainer {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(60px);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    animation: SlideOutAnimation 0.4s ease;
+}
+
+.Title {
+    width: 100%;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.Duration {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.MainContainer:hover .DetailsContainer {
+    bottom: 0;
+    animation: SlideInAnimation 0.4s ease;
+}
+
+@keyframes SlideInAnimation {
+    from {
+        bottom: -100%;
+    }
+    to {
+        bottom: 0
+    }
+}
+
+@keyframes SlideOutAnimation {
+    from {
+        bottom: 0;
+    }
+    to {
+        bottom: -100%;
+    }
+}
