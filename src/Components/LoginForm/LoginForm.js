@@ -7,8 +7,11 @@ import {connect} from "react-redux";
 import ButtonGenerator from "../ButtonGenerator/ButtonGenerator";
 import {Link} from "react-router-dom";
 import {BACKEND_API} from "../../Utilities/ApiEndpoints";
+import {getData} from "../../Utilities/CommonMethods";
 
 const LoginForm = (props) => {
+
+    console.log(props)
 
     let email = ''
     let password = ''

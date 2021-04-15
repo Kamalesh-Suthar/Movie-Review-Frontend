@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import Header from "./CommonComponents/Header/Header";
 import Footer from "./CommonComponents/Footer/Footer";
 
+import Loader from "./HOC/Loader/Loader";
+
 
 import Login from "./Containers/Login/Login";
 import SignUp from "./Containers/SignUp/SignUp";
@@ -19,23 +21,23 @@ import {BACKEND_API} from "./Utilities/ApiEndpoints";
 function App(props) {
 
     getData(`${BACKEND_API}movies`)
-        .then((response) => {
+        .then(response => {
             props.updateMovieList(response)
-        })
+        }).catch(err => console.log(err))
 
-  return (
-      <BrowserRouter>
-        <div className="App">
-          <Route path={'/'} component={Header}/>
-
-          <Route exact path={'/'} component={Login} />
-          <Route exact path={'/signup'} render={(props) => <SignUp {...props} />} />
-          <Route exact path={'/movies'} render={(props) => <Movies {...props}/> } />
-          <Route exact path={'/AddMovie'} render={(props) =>  <AddMovie {...props} /> } />
-
-          <Route path={'/'} component={Footer}/>
-        </div>
-      </BrowserRouter>
+return (
+    <BrowserRouter>
+        <Route path={'/'} component={Header}/>
+            <div className="App">
+                <Route exact path={'/'} render={(props) => <Login {...props} updateMovieList={props.updateMovieList}/>} />
+                {/*<Loader {...props}>*/}
+                    <Route exact path={'/signup'} render={(props) => <SignUp {...props} />} />
+                    <Route exact path={'/movies'} render={(props) => <Movies {...props}/> } />
+                    <Route exact path={'/AddMovie'} render={(props) =>  <AddMovie {...props} /> } />
+                {/*</Loader>*/}
+            </div>
+        {/*<Route path={'/'} component={Footer}/>*/}
+    </BrowserRouter>
   );
 }
 
@@ -47,4 +49,4 @@ const updateGlobalStoreData = dispatch => {
     }
 }
 
-export default connect( '' , updateGlobalStoreData)(App);
+export default connect((''), updateGlobalStoreData)(App);

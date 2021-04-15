@@ -1,5 +1,7 @@
 const initialState = {
-    reviews: undefined,
+    reviews: {
+        data: []
+    },
 }
 
 export const ReviewReducer = (state = initialState, action) => {

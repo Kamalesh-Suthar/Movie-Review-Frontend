@@ -7,8 +7,6 @@ import Review from "../Review/Review";
 
 const ReviewListing = (props) => {
 
-    console.log(props)
-
     let title = ''
     let description = ''
 
@@ -26,11 +24,21 @@ const ReviewListing = (props) => {
         }
     }
 
+    const resetOfReviewField = () => {
+        let title = document.getElementById("title")
+        let description = document.getElementById("description")
+
+        title.value = ''
+        description.value = ''
+    }
+
     const postReviewHandler = () => {
+
         if(title != '' && description != '') {
             if(props.type == 'private') {
                 if(props.userId == props.userData._id) {
                     const data = {
+                        name: props.userData.name,
                         title: title,
                         description: description,
                         movieId: props._id,
@@ -39,13 +47,14 @@ const ReviewListing = (props) => {
 
                     axios.post(`${BACKEND_API}post-review`, data)
                         .then(response => {
-                            // console.log(response)
+                            resetOfReviewField()
                         })
                 } else {
                     alert('Your are not authorized to Review this movie.')
                 }
             } else {
                 const data = {
+                    name: props.userData.name,
                     title: title,
                     description: description,
                     movieId: props._id,
@@ -54,7 +63,8 @@ const ReviewListing = (props) => {
 
                 axios.post(`${BACKEND_API}post-review`, data)
                     .then(response => {
-                        console.log(response)
+                        props.updateVisibility(!props.isVisible)
+                        resetOfReviewField()
                     })
             }
         } else {
@@ -74,8 +84,9 @@ const ReviewListing = (props) => {
             </div>
             <div className={classes.AddReviewContainer}>
                 <div className={classes.ReviewFieldContainer}>
-                    <input onChange={e => handleReviewChange(e)} className={classes.TitleField} type={'text'} name={'title'} placeholder={'Add A Title'}/>
-                    <input onChange={e => handleReviewChange(e)} className={classes.ReviewField} type={'text'} name={'review'} placeholder={'Add A Review'}/>
+                    <input id={'title'} onChange={e => handleReviewChange(e)} className={classes.TitleField} type={'text'} name={'title'} placeholder={'Add A Title'}/>
+                    <input id={'description'} onChange={e => handleReviewChange(e)} className={classes.ReviewField} type={'text'} name={'review'} placeholder={'Add A' +
+                    ' Review'}/>
                     <button onClick={e => postReviewHandler()} value={'Post'} className={classes.AddReviewBtn} type={'none'}>Post</button>
                 </div>
             </div>
@@ -86,8 +97,15 @@ const ReviewListing = (props) => {
 const fetchDataFromGlobalStore = globalStore => {
     return {
         userData: globalStore.User.data,
-        reviews: globalStore.Reviews.reviews
+        reviews: globalStore.Reviews.reviews,
+        isVisible: globalStore.Movies.isVisible
     }
 }
 
-export default connect(fetchDataFromGlobalStore)(ReviewListing)
+const updateGlobalStoreData = dispatch => {
+    return {
+        updateVisibility: data => dispatch({ type: 'UPDATE_DETAILS_VISIBILITY', data: data})
+    }
+}
+
+export default connect(fetchDataFromGlobalStore, updateGlobalStoreData)(ReviewListing)

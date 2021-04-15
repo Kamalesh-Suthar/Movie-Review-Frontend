@@ -19,3 +19,9 @@
     position: relative;
 }
 
+.AddMovieButtonContainer {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 24px 30% 48px 30%;
+}
+

@@ -1,7 +1,7 @@
 .MainContainer {
     width: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(30px);
     border: 1px solid transparent;
     position: fixed;
     top: 55%;
@@ -12,6 +12,7 @@
     border-radius: 8px;
     box-sizing: border-box;
     padding: 48px 100px;
+    color: #fff;
 }
 
 .TopContainer {
@@ -83,4 +84,5 @@
 .BottomContainer {
     width: 100%;
     position: relative;
+    height: 40%;
 }

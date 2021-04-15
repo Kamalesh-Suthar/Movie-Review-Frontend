@@ -45,7 +45,7 @@
 }
 
 .RightSection {
-    width: 15%;
+    /*width: 10%;*/
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -53,4 +53,10 @@
 
 .Hide {
     display: none;
+}
+
+.UserName {
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: 24px;
 }

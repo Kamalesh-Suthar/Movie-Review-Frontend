@@ -4,8 +4,6 @@ import classes from './Review.module.css'
 
 const Review = (props) => {
 
-    console.log(props)
-
     return(
         <div className={classes.MainContainer}>
             <div className={classes.LeftSection}>
@@ -27,5 +25,7 @@ const Review = (props) => {
         </div>
     )
 }
+
+
 
 export default Review

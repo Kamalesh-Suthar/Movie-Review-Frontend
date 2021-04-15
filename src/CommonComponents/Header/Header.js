@@ -12,6 +12,15 @@ const Header = (props) => {
         }
     }
 
+    const handleMyMoviesClick = (e) => {
+        console.log(props.User.data._id)
+    }
+
+    const handleLogout = () => {
+        props.updateVisibility()
+        props.updateUser()
+    }
+
     return(
 
         <div className={classes.MainContainer}>
@@ -26,8 +35,8 @@ const Header = (props) => {
                     </span>
                 </span>
                 <span className={`classes.MenuContainer ${ props.User.data ? '' : classes.Hide}`}>
-                    <span className={classes.MenuItems}>
-                        My Movies
+                    <span onClick={e => handleMyMoviesClick(e)} className={classes.MenuItems}>
+                        {/*My Movies*/}
                     </span>
                 </span>
             </nav>
@@ -36,10 +45,10 @@ const Header = (props) => {
                     {displayUserName()}
                 </span>
                 <span className={`classes.LogoutButtonContainer ${ props.User.data ? '' : classes.Hide}`}>
-                    <ButtonGenerator BtnTitle={'LOGOUT'}/>
+                    <ButtonGenerator handleLogout={handleLogout} {...props} BtnTitle={'LOGOUT'}/>
                 </span>
                 <span className={`classes.LogoutButtonContainer ${ props.User.data ? classes.Hide : ''}`}>
-                    <ButtonGenerator BtnTitle={'LOGIN'}/>
+                    <ButtonGenerator {...props} BtnTitle={'LOGIN'}/>
                 </span>
             </nav>
         </div>
@@ -52,5 +61,12 @@ const fetchDataFromGlobalStore = (globalStore) => {
     }
 }
 
+const updateGlobalStoreData = dispatch => {
+    return {
+        updateVisibility: () => dispatch({ type: 'UPDATE_DETAILS_VISIBILITY', data: false}),
+        updateUser: () => dispatch({ type: 'UPDATE_USER', data: undefined })
+    }
+}
 
-export default connect(fetchDataFromGlobalStore)(Header)
+
+export default connect(fetchDataFromGlobalStore, updateGlobalStoreData)(Header)
